@@ -1,0 +1,137 @@
+<!doctype html><html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Salisbury Zoo App - Database Admin Page</title>
+    <link rel="stylesheet" href="res/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $( function() {
+        $( "#tabs" ).tabs();
+        $('#newExhibitName').hide();
+        $('#deleteNewsItem').hide();
+        $("#imgInp").change(function(){
+            readURL(this);
+        });
+        $("#newsImgInp").change(function(){
+            newsReadURL(this);
+        });
+      } );
+    </script>
+  </head>
+  <body>
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1">Add an Animal</a></li>
+        <li><a href="#tabs-2">Delete an Animal</a></li>
+        <li><a href="#tabs-3">Generate Exhibit QR</a></li>
+        <li><a href="#tabs-4">Add a News Item</a></li>
+        <li><a href="#tabs-5">Delete a News Item</a></li>
+      </ul>
+      <div id="tabs-1">
+        *Exhibits must have at least one animal. To add an exhibit, select 'New Exhibit' in the dropdown and give it a name, and fill out
+        the animal fields for the new exhibit's first animal. To see the new exhibit/animals you add in the dropdowns, refresh the page.
+        <br><br>
+        <form method="post" action="demoform.asp">
+          <label for="animalName">Animal Name:</label>
+          <input type="text" name="animalName" id="animalName">
+        </form>
+        <br>
+        <form method="post" action="demoform.asp">
+          <label for="animalSN">Scientific Name (binomial nomenclature):</label>
+          <input type="text" name="animalSN" id="animalSN">
+        </form>
+        <br>
+        <form method="post" action="demoform.asp">
+          <label for="animalHabitat">Habitat/Range:</label>
+          <input type="text" name="animalHabitat" id="animalHabitat">
+        </form>
+        <br>
+        <form method="post" action="demoform.asp">
+          <label for="animalDescription">Description/Adaption:</label>
+          <input type="text" name="animalDescription" id="animalDescription">
+        </form>
+        <br>
+        <form method="post" action="demoform.asp">
+          <label for="animalStatus">Status (Endangered etc):</label>
+          <input type="text" name="animalStatus" id="animalStatus">
+        </form>
+        <br>
+        Animal Image:
+        <form id="form1" runat="server">
+          <input type='file' id="imgInp" accept="image/*">
+          <img id="animalImage" src="#" alt="[Your Image]" />
+        </form>
+        <br><br>
+        <select id="aaSelect" onchange = "aaReveal()">
+          <option value="" disabled selected>Select an Exhibit</option>
+        </select>
+        <form id="newExhibitName" method="post" action="demoform.asp">
+          <label for="newExhibitName">New Exhibit Name:</label>
+          <input type="text" name="newExhibitName" id="newExhibitName">
+        </form>
+        <br><br>
+        <button id="submitAnimal" type="button" onclick = "submitAnimal()">Add Animal</button>
+      </div>
+      <div id="tabs-2">
+        *Exhibits must have at least one animal. If you delete the only animal in an exhibit, the exhibit will also be removed. Refresh to see changes in the dropdowns.
+        <br><br>
+        <select onchange = "daReveal()" id="daSelect">
+          <option value="" disabled selected>Select an Exhibit</option>
+        </select>
+        <br><br>
+        <div id="daConditional"></div>
+        <br><br>
+        <button id="deleteAnimal" type="button" onclick = "deleteAnimal()">Delete Animal</button>
+      </div>
+      <div id="tabs-3">
+        <select onchange = "getQR()" id="qrSelect">
+          <option value="" disabled selected>Select an Exhibit</option>
+        </select>
+        <br><br><br>
+        <img id="qrImage" src="#" alt="[Your QR Image]" title=""/>
+      </div>
+      <div id="tabs-4">
+        *Add a news item here. Images and date are optional, other fields are not.
+        <br><br>
+        <form method="post" action="demoform.asp">
+          <label for="newsName">Headline:</label>
+          <input type="text" name="newsName" id="newsName">
+        </form>
+        <br>
+        <form method="post" action="demoform.asp">
+          <label for="newsDate">News Date/Time Range:</label>
+          <input type="text" name="newsDate" id="newsDate">
+        </form>
+        <br>  
+        News Description:
+        <br>
+        <textarea rows="8" cols="40" id="newsInfo"></textarea>
+        <br>
+        <br>
+        News Image:
+        <form id="form1" runat="server">
+          <input type='file' id="newsImgInp" accept="image/*">
+          <img id="newsImage" src="#" alt="[Your Image]" />
+        </form>
+        <br><br>
+        <button id="submitNews" type="button" onclick = "submitNews()">Add News Item</button>
+      </div>
+      <div id="tabs-5">
+        <select onchange = "dnReveal()" id = "dnSelect">
+          <option value="" disabled selected>Select a News Item</option>
+        </select>
+        <br><br>
+        <button id="deleteNewsItem" type="button" onclick = "deleteNewsItem()">Delete News Item</button>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+    <script type="text/javascript" src="webapp.js"></script>
+    <script type="text/javascript" src="res/moment.js"></script>
+  </body>
+</html>
