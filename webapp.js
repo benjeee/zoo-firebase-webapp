@@ -1,10 +1,10 @@
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyD6QCoDCq-D7Y_EyC9Z3NsDw-ndySgiFTU",
-  authDomain: "sbyzoo-d5f5e.firebaseapp.com",
-  databaseURL: "https://sbyzoo-d5f5e.firebaseio.com",
-  storageBucket: "sbyzoo-d5f5e.appspot.com",
-  messagingSenderId: "281605531882"
+  apiKey: "secret",
+  authDomain: "secret",
+  databaseURL: "secret",
+  storageBucket: "secret",
+  messagingSenderId: "secret"
 };
 firebase.initializeApp(config);
 
