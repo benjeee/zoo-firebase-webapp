@@ -1,2 +1,2 @@
 # zoo-firebase-webapp
-javascript webapp that manages firebase backend for salisbury zoo mobile app
+Javascript webapp that manages firebase backend for Salisbury Zoo mobile app.
